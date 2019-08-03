@@ -1,0 +1,44 @@
+---
+title: "Dataincome"
+author: "Qian Zhang"
+date: "8/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Income Data Analysis
+
+We're using income data in this report.
+
+
+```{r income}
+library(readr)
+income <- read_csv("~/Desktop/HU Classes/GRAD 695-51-B/income.csv")
+summary(income)
+```
+
+## Descriptive Analysis
+
+We create histogram graph to explorer the dataset:
+
+```{r}
+par(mfrow=c(2,2))
+hist(income$All_workers, main="Histo of all workers income", xlab = "all workers", ylab = "salary", col = "gray")
+hist(income$All_weekly, main="Histo of all weekly income", xlab = "all weekly", ylab = "salary",  col = "gray")
+hist(income$M_workers, main="Histo of Male works income", xlab = "Male workers", ylab = "salary", col = "gray")
+hist(income$F_workers, main="Histo of Female workers income", xlab = "Female workers", ylab = "salary", col = "gray")
+```
+
+## Regression Analysis
+```{r}
+model <-lm (All_workers~Industry,data=income)
+summary(model)
+```
+
+## Plot
+```{r}
+plot(model)
+```
